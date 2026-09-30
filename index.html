@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Acervo Digital do Museu da Música de Itu - Sistema de catalogação, digitalização e preservação do acervo musical.">
+
+    <title>Acervo Digital | Museu da Música de Itu</title>
+
+    <!-- Bootstrap 5 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        :root {
+            --azul-museu: #087f8c;
+            --azul-claro: #e8f7f8;
+            --azul-escuro: #075c66;
+            --dourado: #c6a15b;
+            --creme: #f8f5ec;
+            --cinza-fundo: #f5f6f7;
+            --cinza-texto: #5f6368;
+        }
+
+        body {
+            background-color: var(--cinza-fundo);
+            color: #2d3436;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar-museu {
+            background-color: white;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .navbar-brand {
+            color: var(--azul-museu) !important;
+            font-weight: 700;
+        }
+
+        .navbar-brand small {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #777;
+        }
+
+        .nav-link {
+            color: #444 !important;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--azul-museu) !important;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            background:
+                linear-gradient(
+                    rgba(5, 92, 102, 0.94),
+                    rgba(8, 127, 140, 0.90)
+                );
+
+            color: white;
+            padding: 80px 0;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 760px;
+        }
+
+        .hero-icon {
+            font-size: 5rem;
+            opacity: 0.25;
+        }
+
+        /* =========================
+           BOTÕES
+        ========================= */
+
+        .btn-museu {
+            background-color: var(--dourado);
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+
+        .btn-museu:hover {
+            background-color: #ad8848;
+            color: white;
+        }
+
+        .btn-outline-museu {
+            color: var(--azul-museu);
+            border: 1px solid var(--azul-museu);
+        }
+
+        .btn-outline-museu:hover {
+            background-color: var(--azul-museu);
+            color: white;
+        }
+
+        /* =========================
+           SEÇÕES
+        ========================= */
+
+        .section-title {
+            color: var(--azul-escuro);
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            color: var(--cinza-texto);
+        }
+
+        /* =========================
+           BUSCA
+        ========================= */
+
+        .search-box {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+        }
+
+        .search-box label {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-control,
+        .form-select {
+            min-height: 48px;
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .acervo-card {
+            background-color: white;
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .acervo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.10);
+        }
+
+        .acervo-card-icon {
+            height: 150px;
+            background-color: var(--azul-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--azul-museu);
+            font-size: 4rem;
+        }
+
+        .badge-tipo {
+            background-color: var(--azul-claro);
+            color: var(--azul-escuro);
+            font-weight: 600;
+        }
+
+        .acervo-card .card-title {
+            color: var(--azul-escuro);
+            font-weight: 700;
+        }
+
+        .acervo-card .card-text {
+            color: var(--cinza-texto);
+        }
+
+        /* =========================
+           INDICADORES
+        ========================= */
+
+        .indicador {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            height: 100%;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .indicador-icon {
+            font-size: 2rem;
+            color: var(--azul-museu);
+        }
+
+        .indicador-numero {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--azul-escuro);
+        }
+
+        .indicador-texto {
+            color: var(--cinza-texto);
+            margin: 0;
+        }
+
+        /* =========================
+           PRESERVAÇÃO
+        ========================= */
+
+        .preservacao {
+            background-color: var(--creme);
+        }
+
+        .preservacao-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--azul-museu);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background-color: #183238;
+            color: #d9e1e3;
+        }
+
+        footer h5 {
+            color: white;
+        }
+
+        footer a {
+            color: #d9e1e3;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            .hero {
+                padding: 55px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+
+            .hero-icon {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <nav class="navbar navbar-expand-lg navbar-museu sticky-top">
+
+        <div class="container">
+
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+
+                <i class="bi bi-music-note-beamed fs-2 me-2"></i>
+
+                <span>
+                    Museu da Música de Itu
+                    <small>Acervo Digital</small>
+                </span>
+
+            </a>
+
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal"
+                aria-expanded="false"
+                aria-label="Abrir menu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="index.html">
+                            Início
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="acervo.html">
+                            Acervo
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#preservacao">
+                            Preservação
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="#sobre">
+                            Sobre
+                        </a>
+                    </li>
+
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+
+                        <a
+                            href="login.html"
+                            class="btn btn-outline-museu">
+
+                            <i class="bi bi-person-lock me-1"></i>
+
+                            Área administrativa
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <header class="hero">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-8">
+
+                    <p class="text-uppercase fw-semibold mb-2">
+                        Museu da Música de Itu
+                    </p>
+
+                    <h1 class="mb-4">
+                        Acervo Digital
+                    </h1>
+
+                    <p class="mb-4">
+                        Conheça, pesquise e consulte informações sobre
+                        partituras, documentos, fotografias, instrumentos
+                        e outros itens que fazem parte da memória musical
+                        de Itu e região.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-2">
+
+                        <a
+                            href="acervo.html"
+                            class="btn btn-museu btn-lg px-4">
+
+                            <i class="bi bi-search me-2"></i>
+
+                            Explorar acervo
+
+                        </a>
+
+                        <a
+                            href="#sobre"
+                            class="btn btn-outline-light btn-lg px-4">
+
+                            Saiba mais
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-4 text-center">
+
+                    <i class="bi bi-music-note-list hero-icon"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         BUSCA RÁPIDA
+    ====================================================== -->
+
+    <section class="py-5">
+
+        <div class="container">
+
+            <div class="search-box">
+
+                <div class="text-center mb-4">
+
+                    <h2 class="section-title">
+                        Pesquise no acervo
+                    </h2>
+
+                    <p class="section-subtitle mb-0">
+                        Encontre itens por título, compositor, código
+                        ou tipo de acervo.
+                    </p>
+
+                </div>
+
+
+                <form action="acervo.html" method="get">
+
+                    <div class="row g-3">
+
+                        <div class="col-lg-7">
+
+                            <label for="busca" class="form-label">
+                                Termo de busca
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    <i class="bi bi-search"></i>
+                                </span>
+
+                                <input
+                                    type="search"
+                                    class="form-control"
+                                    id="busca"
+                                    name="busca"
+                                    placeholder="Ex.: Villa-Lobos, Ave Maria, PAR-0001...">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-lg-3">
+
+                            <label for="tipo" class="form-label">
+                                Tipo de acervo
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="tipo"
+                                name="tipo">
+
+                                <option value="">
+                                    Todos os tipos
+                                </option>
+
+                                <option value="partitura">
+                                    Partituras
+                                </option>
+
+                                <option value="documento">
+                                    Documentos
+                                </option>
+
+                                <option value="fotografia">
+                                    Fotografias
+                                </option>
+
+                                <option value="instrumento">
+                                    Instrumentos
+                                </option>
+
+                                <option value="audio">
+                                    Áudios
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="col-lg-2 d-flex align-items-end">
+
+                            <button
+                                type="submit"
+                                class="btn btn-museu w-100"
+                                style="min-height: 48px;">
+
+                                Buscar
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INDICADORES
+    ====================================================== -->
+
+    <section class="pb-5">
+
+        <div class="container">
+
+            <div class="row g-4">
+
+                <div class="col-md-3">
+
+                    <div class="indicador">
+
+                        <i class="bi bi-collection indicador-icon"></i>
+
+                        <div class="indicador-numero mt-2">
+                            10.000+
+                        </div>
+
+                        <p class="indicador-texto">
+                            Itens no acervo
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div class="indicador">
+
+                        <i class="bi bi-file-earmark-music indicador-icon"></i>
+
+                        <div class="indicador-numero mt-2">
+                            10.000
+                        </div>
+
+                        <p class="indicador-texto">
+                            Partituras
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div class="indicador">
+
+                        <i class="bi bi-images indicador-icon"></i>
+
+                        <div class="indicador-numero mt-2">
+                            0%
+                        </div>
+
+                        <p class="indicador-texto">
+                            Digitalização
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <div class="indicador">
+
+                        <i class="bi bi-headphones indicador-icon"></i>
+
+                        <div class="indicador-numero mt-2">
+                            0
+                        </div>
+
+                        <p class="indicador-texto">
+                            Registros sonoros
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="mt-3 text-center">
+
+                <small class="text-muted">
+                    * Os números apresentados são demonstrativos
+                    para o protótipo e serão substituídos pelos dados
+                    reais do sistema.
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         DESTAQUES DO ACERVO
+    ====================================================== -->
+
+    <section class="py-5 bg-white">
+
+        <div class="container">
+
+            <div class="text-center mb-5">
+
+                <h2 class="section-title">
+                    Destaques do acervo
+                </h2>
+
+                <p class="section-subtitle">
+                    Alguns exemplos de itens que podem ser consultados
+                    no catálogo digital.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- PARTITURA -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <article class="acervo-card">
+
+                        <div class="acervo-card-icon">
+
+                            <i class="bi bi-file-earmark-music"></i>
+
+                        </div>
+
+                        <div class="card-body p-4">
+
+                            <span class="badge badge-tipo mb-3">
+                                Partitura
+                            </span>
+
+                            <h3 class="card-title h5">
+                                Ave Maria
+                            </h3>
+
+                            <p class="card-text mb-2">
+                                Partitura pertencente ao acervo
+                                histórico do museu.
+                            </p>
+
+                            <p class="small text-muted mb-3">
+                                <strong>Código:</strong>
+                                PAR-00001
+                            </p>
+
+                            <a
+                                href="item.html?id=PAR-00001"
+                                class="btn btn-outline-museu">
+
+                                Ver detalhes
+
+                                <i class="bi bi-arrow-right ms-1"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+
+                <!-- PARTITURA -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <article class="acervo-card">
+
+                        <div class="acervo-card-icon">
+
+                            <i class="bi bi-file-earmark-music"></i>
+
+                        </div>
+
+                        <div class="card-body p-4">
+
+                            <span class="badge badge-tipo mb-3">
+                                Partitura
+                            </span>
+
+                            <h3 class="card-title h5">
+                                Sonata nº 2
+                            </h3>
+
+                            <p class="card-text mb-2">
+                                Documento musical catalogado
+                                no acervo do museu.
+                            </p>
+
+                            <p class="small text-muted mb-3">
+                                <strong>Código:</strong>
+                                PAR-00002
+                            </p>
+
+                            <a
+                                href="item.html?id=PAR-00002"
+                                class="btn btn-outline-museu">
+
+                                Ver detalhes
+
+                                <i class="bi bi-arrow-right ms-1"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+
+                <!-- DOCUMENTO -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <article class="acervo-card">
+
+                        <div class="acervo-card-icon">
+
+                            <i class="bi bi-file-earmark-text"></i>
+
+                        </div>
+
+                        <div class="card-body p-4">
+
+                            <span class="badge badge-tipo mb-3">
+                                Documento
+                            </span>
+
+                            <h3 class="card-title h5">
+                                Termo de doação
+                            </h3>
+
+                            <p class="card-text mb-2">
+                                Documento relacionado à entrada
+                                de itens no acervo.
+                            </p>
+
+                            <p class="small text-muted mb-3">
+                                <strong>Código:</strong>
+                                DOC-00001
+                            </p>
+
+                            <a
+                                href="item.html?id=DOC-00001"
+                                class="btn btn-outline-museu">
+
+                                Ver detalhes
+
+                                <i class="bi bi-arrow-right ms-1"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+
+            <div class="text-center mt-5">
+
+                <a
+                    href="acervo.html"
+                    class="btn btn-museu px-4">
+
+                    Ver todo o acervo
+
+                    <i class="bi bi-arrow-right ms-2"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PRESERVAÇÃO
+    ====================================================== -->
+
+    <section
+        id="preservacao"
+        class="py-5 preservacao">
+
+        <div class="container">
+
+            <div class="row align-items-center g-5">
+
+                <div class="col-lg-6">
+
+                    <span class="text-uppercase fw-semibold"
+                        style="color: var(--azul-museu);">
+
+                        Preservação digital
+
+                    </span>
+
+                    <h2 class="section-title mt-2 mb-4">
+                        Preservar a memória musical para o futuro
+                    </h2>
+
+                    <p class="text-muted">
+
+                        Muitos itens do acervo existem originalmente
+                        em formato físico. A digitalização permite criar
+                        uma representação digital dessas peças e registrar
+                        informações importantes sobre sua origem,
+                        conservação e histórico.
+
+                    </p>
+
+                    <p class="text-muted">
+
+                        O sistema foi pensado para centralizar essas
+                        informações e facilitar o gerenciamento do
+                        processo de preservação.
+
+                    </p>
+
+                </div>
+
+
+                <div class="col-lg-6">
+
+
+                    <div class="d-flex gap-3 mb-4">
+
+                        <div class="preservacao-icon">
+
+                            <i class="bi bi-file-earmark-image"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="h5 fw-bold">
+                                Digitalização
+                            </h3>
+
+                            <p class="text-muted mb-0">
+                                Registre arquivos digitais relacionados
+                                aos itens físicos do acervo.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="d-flex gap-3 mb-4">
+
+                        <div class="preservacao-icon">
+
+                            <i class="bi bi-database"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="h5 fw-bold">
+                                Dados centralizados
+                            </h3>
+
+                            <p class="text-muted mb-0">
+                                Reúna informações sobre itens,
+                                compositores, doadores e documentos
+                                em um único sistema.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="d-flex gap-3">
+
+                        <div class="preservacao-icon">
+
+                            <i class="bi bi-shield-check"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3 class="h5 fw-bold">
+                                Apoio à preservação
+                            </h3>
+
+                            <p class="text-muted mb-0">
+                                Mantenha registros sobre digitalizações,
+                                documentos e registros sonoros associados
+                                ao acervo.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SOBRE O PROJETO
+    ====================================================== -->
+
+    <section
+        id="sobre"
+        class="py-5 bg-white">
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-9 text-center">
+
+                    <h2 class="section-title mb-4">
+                        Sobre o Acervo Digital
+                    </h2>
+
+                    <p class="lead text-muted">
+
+                        O Acervo Digital é uma proposta de sistema
+                        desenvolvido para auxiliar na catalogação,
+                        digitalização e preservação do patrimônio
+                        musical do Museu da Música de Itu.
+
+                    </p>
+
+                    <p class="text-muted">
+
+                        A plataforma permite organizar informações
+                        sobre os itens do acervo, seus documentos de
+                        doação, digitalizações e registros sonoros,
+                        facilitando tanto a administração da coleção
+                        quanto a consulta pública.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CTA
+    ====================================================== -->
+
+    <section class="py-5">
+
+        <div class="container">
+
+            <div
+                class="p-5 text-center rounded-4"
+                style="background-color: var(--azul-claro);">
+
+                <i
+                    class="bi bi-collection-play fs-1"
+                    style="color: var(--azul-museu);">
+                </i>
+
+                <h2 class="section-title mt-3">
+                    Explore o acervo
+                </h2>
+
+                <p class="text-muted mb-4">
+                    Consulte os itens catalogados e conheça parte
+                    da memória musical preservada pelo museu.
+                </p>
+
+                <a
+                    href="acervo.html"
+                    class="btn btn-museu px-4">
+
+                    Acessar catálogo
+
+                    <i class="bi bi-arrow-right ms-2"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="pt-5 pb-3">
+
+        <div class="container">
+
+            <div class="row g-4">
+
+
+                <div class="col-lg-5">
+
+                    <h5>
+                        Museu da Música de Itu
+                    </h5>
+
+                    <p class="mt-3 mb-0">
+                        Acervo Digital
+                    </p>
+
+                    <p class="small mt-2">
+                        Sistema de apoio à catalogação,
+                        digitalização e preservação do
+                        acervo musical.
+                    </p>
+
+                </div>
+
+
+                <div class="col-sm-6 col-lg-3">
+
+                    <h5>
+                        Navegação
+                    </h5>
+
+                    <ul class="list-unstyled mt-3">
+
+                        <li class="mb-2">
+                            <a href="index.html">
+                                Início
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="acervo.html">
+                                Acervo
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="#preservacao">
+                                Preservação
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#sobre">
+                                Sobre
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="col-sm-6 col-lg-4">
+
+                    <h5>
+                        Área administrativa
+                    </h5>
+
+                    <p class="small mt-3">
+                        Acesso destinado aos responsáveis pela
+                        catalogação e gerenciamento do acervo.
+                    </p>
+
+                    <a
+                        href="login.html"
+                        class="btn btn-outline-light btn-sm">
+
+                        <i class="bi bi-person-lock me-1"></i>
+
+                        Entrar no sistema
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom mt-4 pt-3">
+
+                <div class="d-flex flex-column flex-md-row
+                    justify-content-between gap-2">
+
+                    <p class="small mb-0">
+                        © 2026 Museu da Música de Itu.
+                    </p>
+
+                    <p class="small mb-0">
+                        Acervo Digital — Projeto Acadêmico
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         BOOTSTRAP JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+
+</html>
